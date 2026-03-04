@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>World of Tanks</title>
+    <style>
+        /* Базовые сбросы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        
+        /* Видео на весь экран */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        /* ВЕРХНЯЯ ЧЕРНАЯ ПОЛОСА */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #333;
+            border-top: 2px solid #333;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+        
+        /* КНОПКА TANKI PLAY (теперь как все, без желтого) */
+        .tanki-play {
+            background: transparent;
+            color: white;
+            border: none;
+        }
+        
+        /* НИЖНЯЯ ЧЕРНАЯ ПОЛОСА */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid #333;
+            border-bottom: 2px solid #333;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .bottom-text {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+        
+        .bottom-text-small {
+            font-size: 0.9rem;
+            color: #aaa;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* Контейнер с контентом */
+        .content {
+            position: fixed;
+            top: 74px;
+            bottom: 104px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1;
+        }
+        
+        /* ЛОГОТИП */
+        .logo {
+            max-width: 600px;
+            width: 90%;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+        }
+        
+        .logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* КНОПКА В БОЙ! (ОСВЕТЛЕННАЯ) */
+        .wot-button {
+            display: inline-block;
+            width: 280px;
+            height: 90px;
+            background-image: url('button-texture.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #8a7a5e;  /* Осветленный цвет */
+            background-blend-mode: multiply;
+            border: 2px solid #aaa;  /* Светло-серая рамка */
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-indent: -9999px;
+            opacity: 0.9;  /* Немного прозрачности для осветления */
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .top-bar {
+                height: 60px;
+                gap: 10px;
+                padding: 0 10px;
+            }
+            
+            .top-bar a {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+            
+            .content {
+                top: 64px;
+                bottom: 84px;
+            }
+            
+            .bottom-bar {
+                height: 80px;
+            }
+            
+            .logo {
+                max-width: 400px;
+                margin-bottom: 30px;
+            }
+            
+            .wot-button {
+                width: 220px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фоновое видео -->
+    <video id="bg-video" autoplay loop muted playsinline>
+        <source src="wot-background.mp4" type="video/mp4">
+    </video>
+    
+    <!-- ВЕРХНЯЯ ЧЕРНАЯ ПОЛОСА -->
+    <div class="top-bar">
+        <a href="news.html">НОВОСТИ</a>
+        <a href="about.html">ОБ ИГРЕ</a>
+        <a href="https://playhop.com/ru/app/276147" class="tanki-play" target="_blank">TANKI PLAY</a>
+    </div>
+    
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="content">
+        
+        <!-- ЛОГОТИП -->
+        <div class="logo">
+            <img src="wot-logo.png" alt="World of Tanks">
+        </div>
+        
+        <!-- КНОПКА В БОЙ! (ОСВЕТЛЕННАЯ) -->
+        <div class="wot-button"
+            onclick="window.location.href='https://t.me/wot070';"
+            onmouseenter="enableSound()">
+        </div>
+        
+    </div>
+    
+    <!-- НИЖНЯЯ ЧЕРНАЯ ПОЛОСА -->
+    <div class="bottom-bar">
+        <div class="bottom-text">Technology by Unity</div>
+        <div class="bottom-text-small">WOT LEGACY</div>
+    </div>
+
+    <script>
+        const video = document.getElementById('bg-video');
+        let soundEnabled = false;
+
+        function enableSound() {
+            if (!soundEnabled) {
+                video.muted = false;
+                video.play();
+                soundEnabled = true;
+            }
+        }
+
+        video.play().catch(e => console.log('Видео без звука'));
+
+        document.body.addEventListener('click', function() {
+            if (!soundEnabled) {
+                video.muted = false;
+                video.play();
+                soundEnabled = true;
+            }
+        }, { once: true });
+    </script>
+
+</body>
+</html>
